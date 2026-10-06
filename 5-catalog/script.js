@@ -28,8 +28,6 @@ function getFiltered() {
     );
   }
 
-  console.log(result);
-
   if (category !== "all") {
     result = products.filter((p) => p.category === category);
   }
@@ -38,6 +36,8 @@ function getFiltered() {
     result.sort((a, b) => b.price - a.price);
   } else if (sort === "asc") {
     result.sort((a, b) => a.price - b.price);
+  } else {
+    result.sort((a, b) => a.id - b.id);
   }
 
   return result;
@@ -52,7 +52,7 @@ function render() {
     card.innerHTML = `<h3>${p.name}</h3><p class="cat">${p.category}</p><p class="price">$${p.price}</p>`;
     grid.appendChild(card);
   });
-  countEl.textContent = products.length;
+  countEl.textContent = items.length;
 }
 
 searchInput.addEventListener("input", render);
