@@ -44,7 +44,21 @@ function clearCompleted() {
 }
 
 function getVisibleTasks() {
-  return tasks;
+  return tasks.filter((t) => {
+    switch (currentFilter) {
+      case "all":
+        return t;
+        break;
+      case "active":
+        return !t.done;
+        break;
+      case "done":
+        return t.done;
+        break;
+      default:
+        break;
+    }
+  });
 }
 
 function updateCounter() {
@@ -90,6 +104,7 @@ filterButtons.forEach((btn) => {
     filterButtons.forEach((b) => b.classList.remove("active"));
     btn.classList.add("active");
     currentFilter = btn.dataset.filter;
+    console.log(currentFilter);
     render();
   });
 });
