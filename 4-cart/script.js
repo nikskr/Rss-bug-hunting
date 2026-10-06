@@ -35,12 +35,18 @@ function addToCart(id) {
   if (!product) {
     return;
   }
-  cart.push({
-    id: product.id,
-    name: product.name,
-    price: product.price,
-    qty: 1,
-  });
+  const cartProductIndex = cart.findIndex((p) => p.id === product.id);
+  if (cartProductIndex === -1) {
+    cart.push({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      qty: 1,
+    });
+  } else {
+    cart[cartProductIndex].qty++;
+  }
+  console.log();
   renderCart();
 }
 
