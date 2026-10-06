@@ -14,6 +14,7 @@ function addTask() {
   const text = input.value;
   if (!text.trim()) {
     errorEl.hidden = false;
+    input.value = "";
     return;
   }
   errorEl.hidden = true;
@@ -54,7 +55,7 @@ function render() {
     const li = document.createElement("li");
     li.className = "task";
     if (task.done) {
-      li.classList.add("completed");
+      li.classList.add("done");
     }
 
     const span = document.createElement("span");
