@@ -23,8 +23,12 @@ function getFiltered() {
   const sort = sortSelect.value;
 
   if (search) {
-    result = result.filter((p) => p.name === search);
+    result = result.filter((p) =>
+      p.name.toLowerCase().includes(search.toLowerCase()),
+    );
   }
+
+  console.log(result);
 
   if (category !== "all") {
     result = products.filter((p) => p.category === category);
